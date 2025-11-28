@@ -1,0 +1,155 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Wrapper for layout */
+.container {
+    display: flex;
+}
+
+/* Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 15px 40px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f1c40f;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    position: sticky;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.blog-list {
+    list-style: none;
+}
+
+.blog-list li {
+    margin-bottom: 15px;
+}
+
+.blog-list a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.blog-list a:hover {
+    color: #f1c40f;
+}
+
+.white-rounded-btn {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+    margin-bottom: 12px;
+    }
+
+.white-rounded-btn:hover {
+    background-color: #f2f2f2;
+    }
+
+/* Recent Uploads Section */
+.recent-uploads {
+    background: #f7f7f7;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    min-width: 75%;
+}
+
+.recent-uploads h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+}
+
+.uploads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    transition: 0.3s;
+}
+
+.upload-item:hover {
+    background: #eef5ff;
+    border-color: #bcd4ff;
+}
+
+.upload-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.upload-item p {
+    font-size: 14px;
+    color: #666;
+}
