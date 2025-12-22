@@ -153,3 +153,33 @@ body {
     font-size: 14px;
     color: #666;
 }
+
+.blog-post {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    min-width: 60%;
+}
+
+.post-title {
+    margin-bottom: 8px;
+}
+
+.post-meta {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.post-meta span {
+    margin-right: 15px;
+}
+
+.post-content p {
+    margin-bottom: 16px;
+}
