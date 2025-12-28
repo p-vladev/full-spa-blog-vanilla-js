@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "blogTitle": "The Power of Daily Habits",
+    "user": "Alex Johnson",
+    "postedAt": "2024-01-05",
+    "text": "Daily habits quietly shape our lives over time. Small actions, repeated consistently, often matter more than rare big decisions. Whether it is reading, exercising, or planning your day, habits build momentum and create long-term change without requiring constant motivation."
+  },
+  {
+    "id": 2,
+    "blogTitle": "Why Learning Never Stops",
+    "user": "Emily Carter",
+    "postedAt": "2024-01-12",
+    "text": "Learning should not end with formal education. In a fast-changing world, continuous learning helps us stay relevant, confident, and curious. Exploring new skills and ideas keeps the mind flexible and opens unexpected opportunities."
+  },
+  {
+    "id": 3,
+    "blogTitle": "Working Smarter, Not Harder",
+    "user": "Michael Lee",
+    "postedAt": "2024-01-18",
+    "text": "Being busy does not always mean being productive. Working smarter means identifying priorities, reducing distractions, and focusing on tasks that create real value. Clear goals and better planning can significantly improve both performance and well-being."
+  },
+  {
+    "id": 4,
+    "blogTitle": "The Importance of Mental Health",
+    "user": "Sophia Martinez",
+    "postedAt": "2024-01-25",
+    "text": "Mental health plays a crucial role in how we think, feel, and act every day. Taking breaks, setting boundaries, and asking for support are signs of strength, not weakness. A healthy mind helps us handle challenges more effectively."
+  },
+  {
+    "id": 5,
+    "blogTitle": "Technology in Everyday Life",
+    "user": "Daniel Brown",
+    "postedAt": "2024-02-02",
+    "text": "Technology has become an essential part of modern life, from communication to work and entertainment. While it offers convenience and efficiency, mindful usage is important to avoid burnout and information overload."
+  },
+  {
+    "id": 6,
+    "blogTitle": "Building Meaningful Relationships",
+    "user": "Olivia Wilson",
+    "postedAt": "2024-02-08",
+    "text": "Meaningful relationships are built through trust, honesty, and consistent effort. Listening actively and showing empathy strengthens connections. Quality relationships provide emotional support and enrich our personal and professional lives."
+  },
+  {
+    "id": 7,
+    "blogTitle": "Overcoming Fear of Failure",
+    "user": "James Anderson",
+    "postedAt": "2024-02-15",
+    "text": "Fear of failure often prevents people from trying new things. However, failure is a natural part of growth and learning. Each setback offers lessons that bring us closer to success if we are willing to reflect and adapt."
+  },
+  {
+    "id": 8,
+    "blogTitle": "The Value of Time Management",
+    "user": "Isabella Nguyen",
+    "postedAt": "2024-02-22",
+    "text": "Effective time management helps reduce stress and improve focus. Planning tasks in advance and setting realistic deadlines allows more control over daily responsibilities. Good time management creates space for rest and creativity."
+  },
+  {
+    "id": 9,
+    "blogTitle": "Creativity in Simple Things",
+    "user": "Ethan Miller",
+    "postedAt": "2024-03-01",
+    "text": "Creativity is not limited to artists or designers. It can be found in problem-solving, communication, and everyday decisions. Looking at ordinary situations from a new perspective often leads to innovative ideas."
+  },
+  {
+    "id": 10,
+    "blogTitle": "Staying Motivated Long-Term",
+    "user": "Ava Thompson",
+    "postedAt": "2024-03-06",
+    "text": "Motivation naturally rises and falls over time. Long-term progress depends more on discipline, habits, and clear purpose. Setting achievable goals and tracking progress helps maintain momentum even during difficult periods."
+  },
+  {
+    "id": 11,
+    "blogTitle": "The Role of Self-Reflection",
+    "user": "Noah Garcia",
+    "postedAt": "2024-03-12",
+    "text": "Self-reflection allows us to understand our thoughts, emotions, and decisions. Regular reflection helps identify patterns, improve behavior, and make better choices. It is a powerful practice for personal and professional growth."
+  },
+  {
+    "id": 12,
+    "blogTitle": "Finding Balance in Life",
+    "user": "Mia Robinson",
+    "postedAt": "2024-03-18",
+    "text": "Finding balance in life means making time for work, relationships, rest, and personal interests. Balance does not mean equal time for everything, but intentional choices that support long-term happiness and health."
+  }
+]
