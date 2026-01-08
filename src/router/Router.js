@@ -21,6 +21,11 @@ export default class Router{
         // console.log("Rendered View: ", renderedView);
 
         document.querySelector("#app").innerHTML = renderedView;
+
+        if (view.after_render) {
+            // console.log("After Render summoned!");
+            await view.after_render();
+        }
     };
 
     NavigateTo = (path, view, props) => {
@@ -31,7 +36,6 @@ export default class Router{
 
         history.pushState(props, null, path);
 
-        // history.replaceState(null, null, path);
         this.Render(view);
     };
 
@@ -60,7 +64,13 @@ export default class Router{
 
     ContentController = () => {
         document.addEventListener("DOMContentLoaded", () => {
-            this.routes.forEach(route => {
+            this.routes.find(route => {
+                route.path === location.pathname && this.Render(route.view);
+            });
+        });
+
+        window.addEventListener("popstate", () => {
+            this.routes.find(route => {
                 route.path === location.pathname && this.Render(route.view);
             });
         });
@@ -75,7 +85,7 @@ export default class Router{
             
             if (aClick === null || aClick === undefined) return;
 
-            this.routes.forEach(route => {
+            this.routes.find(route => {
                 let i = this.UrlHandler(route.path, aClick.getAttribute("href"));
                 
                 if (aClick.getAttribute("href") === route.path){

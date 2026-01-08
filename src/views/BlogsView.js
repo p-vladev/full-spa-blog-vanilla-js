@@ -1,54 +1,77 @@
 import Base from "./Base";
-import blogs from "../blogs.json"
+import Loader from "../components/Loader.js";
 import "../router/components/JumpIn.js";
 import DefineProps from "../router/props.js";
 
-    function BlogsRender() {
-        let htmlEL = ``;
+const blogsList = [];
+let isLoading = true;
 
-        blogs.map(blog => {
-            htmlEL +=
-            `<jump-in to="/blogs/${blog.id}" key="${blog.id}" class="upload-item">
-                Blog ${blog.blogTitle}
-                <p>Added: ${blog.postedAt}</p>
-            </jump-in>
+document.addEventListener("click", e => {
+    const jumps = document.querySelectorAll("jump-in");
+    const link = e.target.getAttribute("to");
+
+    if (jumps === null) return;
+
+    jumps.forEach(i => {
+        const key = i.getAttribute("key");
+
+        if (link === null) return;
+        if (link.includes(`/blogs/${key}`) === false) return;
+
+        const blog = blogsList.find(b => b.id == key);
+
+        // console.log("Key: ", i);
+        // console.log("Blog: ", blog);
+
+        DefineProps(blog);
+    })
+});
+
+export default class {
+    
+    Fetcher = async () => fetch("http://localhost:3000/blogs")
+            .then(response => response.json())
+            .then(blogs => {
+                console.log("Fetched blogs: ", blogs);
+                blogs.map(blog => blogsList.push(blog));
+            });
+
+    BlogsRender = () => {
+        let blogsHtml = ``;
+
+        blogsList.map(blog => {
+            blogsHtml += `
+                <jump-in to="/blogs/${blog.id}" key="${blog.id}" class="upload-item">
+                    ${blog.blogTitle}
+                    <p>Added: ${blog.postedAt}</p>
+                </jump-in>
             `;
         });
 
-        return htmlEL;
+        console.log("Is Loading: ", isLoading);
+        return blogsHtml;
     }
 
-    document.addEventListener("click", e => {
-        const jumps = document.querySelectorAll("jump-in");
-        const link = e.target.getAttribute("to");
-
-        if (jumps === null) return;
-
-        jumps.forEach(i => {
-            const key = i.getAttribute("key");
-
-            if (link === null) return;
-            if (link.includes(`/blogs/${key}`) === false) return;
-
-            const blog = blogs.find(b => b.id == key);
-
-            // console.log("Key: ", i);
-            // console.log("Blog: ", blog);
-
-            DefineProps(blog);
-        })
-    });
-
-export default class {
+    init = async () => {
+        try {
+            await this.Fetcher();
+        } catch (error) {
+            console.error("Error fetching blogs: ", error);
+        } finally {
+            isLoading = false;
+        }
+    }
 
     async render () {
+        await this.init();
         return `
             <base-render>
                 <div class="recent-uploads">
                     <h2>Blogs</h2>
 
                     <div class="uploads-list">
-                        ${BlogsRender()}
+                        ${isLoading ? `<loader-1/>` 
+                                    : this.BlogsRender()}
                     </div>
                 </div>
             </base-render>

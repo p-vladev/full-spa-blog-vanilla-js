@@ -1,9 +1,11 @@
 import Base from "./Base";
-import GetProps from "../router/props.js";
+import {GetProps} from "../router/props.js";
 
 export default class {
 
     async render () {
+        if (history.state === null) return;
+        // console.log("Blog props in BlogView: ", GetProps());
         let blog = {
                         "id": 0,
                         "blogTitle": "",
@@ -12,7 +14,6 @@ export default class {
                         "text": ""
                     };
 
-        if (history.state === null) return;
 
         blog = history.state;
 
