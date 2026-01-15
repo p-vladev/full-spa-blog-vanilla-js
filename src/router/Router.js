@@ -29,10 +29,7 @@ export default class Router{
     };
 
     NavigateTo = (path, view, props) => {
-
-        if (props === undefined || props === null) {
-            props = null;
-        }
+        if (props === undefined) props = null;
 
         history.pushState(props, null, path);
 

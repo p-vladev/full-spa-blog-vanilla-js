@@ -1,7 +1,7 @@
 import HomeView from "./views/HomeView";
 import BlogView from "./views/BlogView";
 import BlogsView from "./views/BlogsView.js";
-import Router from "./router/router.js";
+import Router from "./router/Router.js";
 import AddBlogView from "./views/AddBlogView.js";
 
 const router = new Router;

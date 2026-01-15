@@ -1,9 +1,10 @@
 import Base from "./Base";
 import Loader from "../components/Loader.js";
+import BackButton from "../components/BackButton.js";
 import "../router/components/JumpIn.js";
 import DefineProps from "../router/props.js";
 
-const blogsList = [];
+let blogsList = [];
 let isLoading = true;
 
 document.addEventListener("click", e => {
@@ -33,6 +34,7 @@ export default class {
             .then(response => response.json())
             .then(blogs => {
                 console.log("Fetched blogs: ", blogs);
+                if (blogsList[0] !== null || blogsList[0] !== undefined) blogsList = [];
                 blogs.map(blog => blogsList.push(blog));
             });
 
@@ -68,6 +70,7 @@ export default class {
             <base-render>
                 <div class="recent-uploads">
                     <h2>Blogs</h2>
+                    <back-button></back-button>
 
                     <div class="uploads-list">
                         ${isLoading ? `<loader-1/>` 

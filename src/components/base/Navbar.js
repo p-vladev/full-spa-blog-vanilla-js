@@ -1,10 +1,10 @@
-import AbstractComponent from "./AbstractComponent"
+import AbstractComponent from "../AbstractComponent"
 
 export default class extends AbstractComponent{
 
     render () {
         return `
-        <nav class="navbar">
+        <nav id="navbar" class="navbar">
             <a href="/" class="logo">BlogsOnline</a>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
