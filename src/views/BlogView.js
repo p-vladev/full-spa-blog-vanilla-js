@@ -1,7 +1,6 @@
 import Base from "./Base";
 import Loader from "../components/Loader.js";
 import BackButton from "../components/BackButton.js";
-import {GetProps} from "../router/props.js";
 
 let isLoading = true;
 let blog;

@@ -62,7 +62,7 @@ export default class {
             const day = d.getDate();
             const year = d.getFullYear();
 
-            const postedAt = `${day}-${month}-${year}`;
+            const postedAt = `${year}-${month}-${day}`;
 
             const blog = {
                 "id": id,

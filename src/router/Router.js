@@ -1,4 +1,4 @@
-import { GetProps } from "../router/props.js";
+import { api } from "../services/api.js";
 
 export default class Router{
     constructor () {
@@ -36,33 +36,27 @@ export default class Router{
         this.Render(view);
     };
 
-    UrlHandler = (route, url) => {
-        const id = /\:\w+/;
+    UrlHandler = async (route, url, view) => {
         const param = "/"
         
         const routeArr = route.split(param);
         const urlArr = url.split(param);
 
         if (routeArr.find((a) => a === ":id")) {
-
-            // return true;
-
-            // console.log("Route: ", routeArr);
-            // console.log("Url: ", urlArr);
-
             const index = routeArr.findIndex((a) => a === ":id");
-            routeArr[index] = urlArr[index];
 
-            return routeArr.join(param);
+            if (urlArr[index] === undefined) return;
+
+            this.NavigateTo(url, view, await api.GetDataById(urlArr[index]))
         }
-
-        return false;
     }
 
     ContentController = () => {
         document.addEventListener("DOMContentLoaded", () => {
             this.routes.find(route => {
-                route.path === location.pathname && this.Render(route.view);
+                route.path === location.pathname 
+                    ? this.Render(route.view) 
+                    : this.UrlHandler(route.path, location.pathname, route.view);
             });
         });
 
@@ -75,22 +69,24 @@ export default class Router{
 
     ClickHandler = () => {
         document.addEventListener("click", e => {
-            const aClick = e.composedPath()
+            e.preventDefault();
+            const aTags = e.composedPath()
                             .find(el => el instanceof HTMLAnchorElement);
 
-            e.preventDefault();
-            
-            if (aClick === null || aClick === undefined) return;
+            if (aTags === undefined || aTags === null) return;
 
-            this.routes.find(route => {
-                let i = this.UrlHandler(route.path, aClick.getAttribute("href"));
-                
-                if (aClick.getAttribute("href") === route.path){
+            const link = aTags.getAttribute("href");
+    
+            if (link === null) return;
+
+            this.routes.find(route => { 
+                if (link === route.path){
                     this.NavigateTo(route.path, route.view);
-                } else if (aClick.getAttribute("href") === i) {
-                    // console.log("Props to send: ", GetProps());
-                    this.NavigateTo(i, route.view, GetProps());
-                }
+
+                    return;
+                } 
+
+                this.UrlHandler(route.path, link, route.view);
             });
         });
     }
