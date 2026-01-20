@@ -24,7 +24,7 @@ export default class extends AbstractComponent {
 
     init = async () => {
         try {
-            blogsList = await api.GetDataSortedByDate("desc", 3);
+            blogsList = await api.GetDataSortedByDate("/blogs", "desc", 3);
         } catch (error) {
             console.error("Error fetching blogs: ", error);
         } finally {

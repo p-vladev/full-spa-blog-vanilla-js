@@ -1,4 +1,15 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Test",
+      "secondName": "Acc",
+      "username": "UserTest",
+      "email": "test@dom.com",
+      "password": "1234567890",
+      "role": "user"
+    }
+  ],
   "blogs": [
     {
       "id": "1",
@@ -85,14 +96,14 @@
       "text": "Finding balance in life means making time for work, relationships, rest, and personal interests. Balance does not mean equal time for everything, but intentional choices that support long-term happiness and health."
     },
     {
-      "id": 999992,
+      "id": "999992",
       "blogTitle": "Earum animi officii",
       "user": "Anonymous",
       "postedAt": "2026-1-16",
       "text": "Temporibus aute iust."
     },
     {
-      "id": 885143,
+      "id": "885143",
       "blogTitle": "Duis enim est commo",
       "user": "Anonymous",
       "postedAt": "2026-1-16",

@@ -343,3 +343,88 @@ body {
     border-color: #bbb !important;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
+
+/* Center the form on the page */
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Form Card Styling */
+  .auth-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .auth-form h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+
+  /* Input Styling */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus {
+    border-color: #9CAF88;
+  }
+
+  /* Button Styling */
+  .btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #9CAF88;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-submit:hover {
+    background-color: #9CAF88;
+  }
+
+  /* Footer Link Styling */
+  .form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .form-footer a {
+    color: #9CAF88;
+    text-decoration: none;
+  }
+
+  .form-footer a:hover {
+    text-decoration: underline;
+  }

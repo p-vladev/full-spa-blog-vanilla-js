@@ -25,7 +25,7 @@ export default class {
 
     init = async () => {
         try {
-            blogsList = await api.GetData();
+            blogsList = await api.GetData("/blogs");
         } catch (error) {
             console.error("Error fetching blogs: ", error);
         } finally {

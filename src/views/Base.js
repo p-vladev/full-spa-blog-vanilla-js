@@ -50,7 +50,7 @@ export default class Base extends HTMLElement {
 
     async render () {
         return `
-            ${nav.render()}
+            ${await nav.render()}
             ${await sidebar.render()}
             <div class="container">
                 <slot></slot>

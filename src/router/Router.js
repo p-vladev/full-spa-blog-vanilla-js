@@ -1,6 +1,6 @@
 import { api } from "../services/api.js";
 
-export default class Router{
+class Router {
     constructor () {
         this.ContentController();
         this.ClickHandler();
@@ -30,6 +30,15 @@ export default class Router{
 
     NavigateTo = (path, view, props) => {
         if (props === undefined) props = null;
+        if (view === null || view === undefined) {
+            this.routes.find(route => {
+                if (route.path === path) {
+                    view = route.view;
+
+                    return true;
+                }
+            });
+        }
 
         history.pushState(props, null, path);
 
@@ -42,13 +51,13 @@ export default class Router{
         const routeArr = route.split(param);
         const urlArr = url.split(param);
 
-        if (routeArr.find((a) => a === ":id")) {
-            const index = routeArr.findIndex((a) => a === ":id");
+        if (routeArr.find((a) => a === ":id") === undefined) return;
 
-            if (urlArr[index] === undefined) return;
+        const index = routeArr.findIndex((a) => a === ":id");
 
-            this.NavigateTo(url, view, await api.GetDataById(urlArr[index]))
-        }
+        if (urlArr[index] === undefined) return;
+
+        this.NavigateTo(url, view, await api.GetDataById(`/${urlArr[index - 1]}`, urlArr[index]))   
     }
 
     ContentController = () => {
@@ -58,6 +67,16 @@ export default class Router{
                     ? this.Render(route.view) 
                     : this.UrlHandler(route.path, location.pathname, route.view);
             });
+
+            // for (const route of this.routes) {
+            //     if (route.path === location.pathname) {
+            //         this.Render(route.view) 
+
+            //         break;
+            //     }
+
+            //     this.UrlHandler(route.path, location.pathname, route.view);
+            // }
         });
 
         window.addEventListener("popstate", () => {
@@ -69,25 +88,38 @@ export default class Router{
 
     ClickHandler = () => {
         document.addEventListener("click", e => {
-            e.preventDefault();
             const aTags = e.composedPath()
-                            .find(el => el instanceof HTMLAnchorElement);
-
+                .find(el => el instanceof HTMLAnchorElement);
+            
             if (aTags === undefined || aTags === null) return;
+            
+            e.preventDefault();
 
             const link = aTags.getAttribute("href");
     
-            if (link === null) return;
+            if (link === null || link === location.pathname) return;
 
             this.routes.find(route => { 
                 if (link === route.path){
                     this.NavigateTo(route.path, route.view);
 
-                    return;
-                } 
+                    return true;
+                }
 
                 this.UrlHandler(route.path, link, route.view);
             });
+
+            // for (const route of this.routes) {
+            //     if (link === route.path){
+            //         this.NavigateTo(route.path, route.view);
+
+            //         break;
+            //     }
+
+            //     this.UrlHandler(route.path, link, route.view);
+            // }
         });
     }
 }
+
+export const router = new Router();

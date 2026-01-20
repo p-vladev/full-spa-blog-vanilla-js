@@ -3,24 +3,54 @@ class ApiServices {
         this.url = url;
     }
 
-    async Request (endpoint) {
-        const res = await fetch(`${this.url}${endpoint}`);
+    async Request (endpoint, method = 'GET', body = null) {
+        const config = {
+            method: method,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
 
-        return await res.json();
+        if (body) config.body = JSON.stringify(body);
+
+        try {
+            const response = await fetch(`${this.url}${endpoint}`, config);
+
+            console.log("The response is: ", response);
+        
+            return await response.json();
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    async GetData () {
-        return await this.Request("/blogs");
+    async GetData (endpoint) {
+        return await this.Request(endpoint);
     }
 
-    async GetDataById (id) {
-        return await this.Request(`/blogs/${id}`)
+    async PostData(endpoint, body){
+        return await this.Request(endpoint, 'POST', body);
     }
 
-    async GetDataSortedByDate (order, limit) {
+    async GetDataById (endpoint, id) {
+        return await this.Request(`${endpoint}/${id}`)
+    }
+
+    async IsDataIn (endpoint) {
+        const d = await this.GetData(endpoint);
+
+        if (d.length === 0) return;
+
+        console.log("How it is on api side: ", d);
+
+        console.log("Data on API side is: ", isValid);
+    }
+
+    async GetDataSortedByDate (endpoint, order, limit) {
         if(order === null || order === undefined) return;
+        if(endpoint === null || endpoint === undefined) return;
 
-        const data = await this.GetData();
+        const data = await this.GetData(endpoint);
 
         if (order === "desc") {
             data.sort((a, b) => {
