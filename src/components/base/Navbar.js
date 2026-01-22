@@ -1,24 +1,8 @@
 import AbstractComponent from "../AbstractComponent"
 
-let isLoggedIn = false;
-
 export default class extends AbstractComponent{
 
-    async init () {
-        let userData;
-
-        try {
-            userData = localStorage.getItem('currentUser');
-            console.log(userData);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            if(userData) isLoggedIn = true;
-        }
-    }
-
-    async render () {
-        await this.init();
+    async render (isLoggedIn) {
 
         return `
             <nav id="navbar" class="navbar">
@@ -28,10 +12,10 @@ export default class extends AbstractComponent{
                     <li><a href="#">About</a></li>
                     <li>${!isLoggedIn 
                         ? `<a href="/login">Log In</a>`
-                        : `<a href="/">Profile</a>` 
+                        : `<a href="/profile">Profile</a>` 
                     }</li>
                 </ul>
             </nav>
-            `;
+        `;
     }
 }

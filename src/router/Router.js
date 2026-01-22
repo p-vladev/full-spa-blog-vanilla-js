@@ -26,7 +26,7 @@ class Router {
             // console.log("After Render summoned!");
             await view.after_render();
         }
-    };
+    }
 
     NavigateTo = (path, view, props) => {
         if (props === undefined) props = null;
@@ -43,7 +43,7 @@ class Router {
         history.pushState(props, null, path);
 
         this.Render(view);
-    };
+    }
 
     UrlHandler = async (route, url, view) => {
         const param = "/"
@@ -57,7 +57,7 @@ class Router {
 
         if (urlArr[index] === undefined) return;
 
-        this.NavigateTo(url, view, await api.GetDataById(`/${urlArr[index - 1]}`, urlArr[index]))   
+        this.NavigateTo(url, view, await api.GetDataWithEmbed(`/${urlArr[index - 1]}/${urlArr[index]}`))   
     }
 
     ContentController = () => {

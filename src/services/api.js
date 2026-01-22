@@ -1,6 +1,7 @@
 class ApiServices {
-    constructor (url) {
+    constructor (url, endpoints) {
         this.url = url;
+        this.endpoints = endpoints;
     }
 
     async Request (endpoint, method = 'GET', body = null) {
@@ -16,7 +17,7 @@ class ApiServices {
         try {
             const response = await fetch(`${this.url}${endpoint}`, config);
 
-            console.log("The response is: ", response);
+            // console.log(`The response of ${endpoint} is: `, await fetch(`${this.url}`, config));
         
             return await response.json();
         } catch (error) {
@@ -28,22 +29,22 @@ class ApiServices {
         return await this.Request(endpoint);
     }
 
+    async GetDataWithEmbed (endpoint) {
+        let txt = `?`;
+
+        for (const endP of this.endpoints) {
+            if (!endpoint.match(endP)) {
+                txt += `_embed=${endP.substring(1, endP.length - 1)}&`;
+            }
+        }
+
+        console.log(endpoint + txt);
+
+        return await this.Request(endpoint + txt);
+    }
+
     async PostData(endpoint, body){
         return await this.Request(endpoint, 'POST', body);
-    }
-
-    async GetDataById (endpoint, id) {
-        return await this.Request(`${endpoint}/${id}`)
-    }
-
-    async IsDataIn (endpoint) {
-        const d = await this.GetData(endpoint);
-
-        if (d.length === 0) return;
-
-        console.log("How it is on api side: ", d);
-
-        console.log("Data on API side is: ", isValid);
     }
 
     async GetDataSortedByDate (endpoint, order, limit) {
@@ -72,4 +73,4 @@ class ApiServices {
     }
 }
 
-export const api = new ApiServices("http://localhost:3000");
+export const api = new ApiServices("http://localhost:3000", ["/users", "/blogs"]);

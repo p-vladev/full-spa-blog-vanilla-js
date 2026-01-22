@@ -36,6 +36,7 @@ export default class Base extends HTMLElement {
     constructor () {
         super();
         this.attachShadow({mode: 'open'});
+        this.isLoggedIn = false;
     }
     
     async connectedCallback () {
@@ -48,9 +49,24 @@ export default class Base extends HTMLElement {
         ShowAndHideHandler(sidebarContainer, navbar);
     }
 
+    async init () {
+        let userData;
+
+        try {
+            userData = localStorage.getItem('currentUser');
+            // console.log(userData);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            if(userData !== undefined && userData !== null) this.isLoggedIn = true;
+        }
+    }
+
     async render () {
+        await this.init();
+
         return `
-            ${await nav.render()}
+            ${await nav.render(this.isLoggedIn)}
             ${await sidebar.render()}
             <div class="container">
                 <slot></slot>

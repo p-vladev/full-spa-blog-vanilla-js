@@ -55,7 +55,7 @@ export default class {
 
             if (blogTitle === "" || blogContent === "") return;
 
-            const id = Math.floor(Math.random() * 1000000);
+            const id = `${Math.floor(Math.random() * 1000000)}`;
 
             const d = new Date();
             const month = d.getMonth() + 1;
@@ -63,13 +63,16 @@ export default class {
             const year = d.getFullYear();
 
             const postedAt = `${year}-${month}-${day}`;
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+
+            console.log(user);
 
             const blog = {
-                "id": id,
-                "blogTitle": blogTitle,
-                "user": "Anonymous",
-                "postedAt": postedAt,
-                "text": blogContent
+                id: id,
+                blogTitle: blogTitle,
+                userId: user.id,
+                postedAt: postedAt,
+                text: blogContent
             };
 
             // console.log("Blog to be added: ", blog);
