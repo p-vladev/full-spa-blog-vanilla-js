@@ -1,3 +1,4 @@
+import { api } from "../services/api";
 
 const TextFormatter = (type) => {
     if (type === null || type === undefined) return;
@@ -7,12 +8,26 @@ const TextFormatter = (type) => {
 
 export default class {
 
+    // async init () {
+    //     try {
+    //         this.blogId = history.state;
+    //         this.blog = await api.GetData(`/blogs/${this.blogId}?_embed=user`);
+    //         console.log(this.blog);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
     async render() {
+        // this.blogId && console.log("Blog id: ", this.blogId);
+        // await this.init();
+
         return `
-            <div id="blog-editor" class="blog-editor">
-                <header class="blog-editor-header">
+            <div id="blog-editor" class="blog-editor" style="max-width: 75%;">
+                <header id="blog-editor-header" class="blog-editor-header">
                     <input id="blog-title" class="blog-title" type="text" placeholder="Blog Title"/>
-                    <button id="post-btn" class="white-rounded-btn">Post</button>
+                    <!-- <button id="post-btn" class="white-rounded-btn">Post</button> -->
+                    <!-- ${this.blogId && `<button id="delete-btn" class="white-rounded-btn">Delete</button>`} -->
                 </header>
                 <div class="formatting-toolbar">
                     <div id="bold-btn" class="format-btn bold-btn">B</div>
@@ -27,27 +42,44 @@ export default class {
     }
 
     
-    async after_render () {
-        const postBtn = document.getElementById("post-btn");
-        const boldBtn = document.getElementById("bold-btn");
-        const italicBtn = document.getElementById("italic-btn");
-        const underlineBtn = document.getElementById("underline-btn");
-        
-        // console.log("START");
+    async after_render (methodFunction, blog) {
+        const submitBtn = `<button id="submit-btn" class="white-rounded-btn">${blog ? "Edit" : "Post"}</button>`;
+        const deleteBtn = blog ? `<button id="delete-btn" class="white-rounded-btn">Delete</button>` : ``;
+        const blogEditorHeader = document.getElementById("blog-editor-header");
 
-        boldBtn.addEventListener("click", e => {
+        const btns = document.createElement("div");
+        btns.innerHTML = `${submitBtn} ${deleteBtn}`;
+
+        blogEditorHeader.appendChild(btns);
+
+        if (blog) {
+            document.getElementById("blog-title").value = blog.blogTitle;
+            document.getElementById("blog-content").innerHTML = blog.text;
+        }
+
+        document.getElementById("delete-btn")?.addEventListener("click", async () => {
+            const confirmDelete = confirm("Are you sure you want to delete this blog?");
+            
+            if (confirmDelete) {
+                await api.DeleteData(`/blogs/${blog.id}`);
+                alert("Blog deleted successfully!");
+                router.NavigateTo("/profile");
+            }
+        });
+
+        document.getElementById("bold-btn").addEventListener("click", e => {
             TextFormatter("bold");
         });
 
-        italicBtn.addEventListener("click", e => {
+        document.getElementById("italic-btn").addEventListener("click", e => {
             TextFormatter("italic");
         });
 
-        underlineBtn.addEventListener("click", e => {
+        document.getElementById("underline-btn").addEventListener("click", e => {
             TextFormatter("underline");
         });
 
-        postBtn.addEventListener("click", e => {
+        document.getElementById("submit-btn").addEventListener("click", e => {
             e.preventDefault();
 
             const blogTitle = document.getElementById("blog-title").value;
@@ -55,36 +87,7 @@ export default class {
 
             if (blogTitle === "" || blogContent === "") return;
 
-            const id = `${Math.floor(Math.random() * 1000000)}`;
-
-            const d = new Date();
-            const month = d.getMonth() + 1;
-            const day = d.getDate();
-            const year = d.getFullYear();
-
-            const postedAt = `${year}-${month}-${day}`;
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-
-            console.log(user);
-
-            const blog = {
-                id: id,
-                blogTitle: blogTitle,
-                userId: user.id,
-                postedAt: postedAt,
-                text: blogContent
-            };
-
-            // console.log("Blog to be added: ", blog);
-
-            fetch("http://localhost:3000/blogs", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(blog)
-            }).then(response => response.json());
-            alert("Blog posted successfully!");
+            methodFunction(blogTitle, blogContent);
         });
     }
 }

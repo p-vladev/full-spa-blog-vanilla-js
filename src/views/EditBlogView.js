@@ -3,38 +3,27 @@ import Loader from "../components/Loader";
 import BlogEditor from "../components/BlogEditor";
 import { api } from "../services/api";
 
-// const blogEditor = new BlogEditor;
-let isLoading = true;
+let isLoading = false;
 
 export default class {
     constructor () {
-        this.blogEditor = new BlogEditor();
-
+        this.blogEditor = new BlogEditor;
     }
 
-    PostBlog (blogTitle, blogContent) {
-        const id = `${Math.floor(Math.random() * 1000000)}`;
-
-        const d = new Date();
-
-        const postedAt = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-        const user = JSON.parse(localStorage.getItem('currentUser'));
-
-        api.PostData("/blogs", 
+    EditBlog (blogTitle, blogContent) {
+        api.PatchData(`/blogs/${history.state}`,
             {
-                id: id,
                 blogTitle: blogTitle,
-                userId: user.id,
-                postedAt: postedAt,
                 text: blogContent
             });
 
-        alert("Blog posted successfully!");
+        alert("Blog edited successfully!");
     }
 
     async init () {
         try {
             document.getElementById("add-blog-form");
+            this.blog = await api.GetData(`/blogs/${history.state}?_embed=user`);
         } catch (error) {
             console.error("Error getting element: ", error);
         } finally {
@@ -43,9 +32,8 @@ export default class {
     }
 
     async render () {
-        await this.init()
-        
-        // console.log("Is loading: ", isLoading);
+        console.log(history.state);
+        await this.init();
 
         return `
             <base-render>
@@ -57,6 +45,6 @@ export default class {
     }
 
     async after_render () {
-        await this.blogEditor.after_render(this.PostBlog);
+        await this.blogEditor.after_render(this.EditBlog, this.blog);
     }
 }

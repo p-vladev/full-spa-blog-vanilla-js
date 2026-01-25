@@ -9,7 +9,7 @@ export default class extends AbstractComponent {
             <button id="show-btn" class="show-btn"><div class="arrow"/></button>
             <div id="sidebar" class="sidebar">
                 <h2>Your Blogs</h2>
-                <a href="/blogs/add-blog"><button class="white-rounded-btn">Add Blog</button></a>
+                <a href="/blogs/new"><button class="white-rounded-btn">Add Blog</button></a>
                 <ul class="blog-list">
                     <li><a href="/blog">First blog</a></li>
                     <li><a href="/blog">Second blog</a></li>

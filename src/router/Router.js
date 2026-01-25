@@ -46,43 +46,46 @@ class Router {
     }
 
     UrlHandler = async (route, url, view) => {
-        const param = "/"
-        
-        const routeArr = route.split(param);
-        const urlArr = url.split(param);
+        // console.log("Route: ", route);
+        // console.log("Is :id in: ", route.match(":id"));
 
-        if (routeArr.find((a) => a === ":id") === undefined) return;
+        if(!route.match(":id")) return;
+
+        const routeArr = route.split("/");
+        const urlArr = url.split("/");
+
+        if (routeArr.length !== urlArr.length) return;
 
         const index = routeArr.findIndex((a) => a === ":id");
 
         if (urlArr[index] === undefined) return;
 
-        this.NavigateTo(url, view, await api.GetDataWithEmbed(`/${urlArr[index - 1]}/${urlArr[index]}`))   
+        this.NavigateTo(url, view, urlArr[index]);
     }
 
     ContentController = () => {
         document.addEventListener("DOMContentLoaded", () => {
-            this.routes.find(route => {
-                route.path === location.pathname 
-                    ? this.Render(route.view) 
-                    : this.UrlHandler(route.path, location.pathname, route.view);
-            });
+            for (const route of this.routes) {
+                if (route.path === location.pathname) {
+                    this.Render(route.view) 
 
-            // for (const route of this.routes) {
-            //     if (route.path === location.pathname) {
-            //         this.Render(route.view) 
+                    break;
+                }
 
-            //         break;
-            //     }
-
-            //     this.UrlHandler(route.path, location.pathname, route.view);
-            // }
+                this.UrlHandler(route.path, location.pathname, route.view);
+            }
         });
 
         window.addEventListener("popstate", () => {
-            this.routes.find(route => {
-                route.path === location.pathname && this.Render(route.view);
-            });
+            for (const route of this.routes) {
+                if (route.path === location.pathname) {
+                    this.Render(route.view) 
+
+                    break;
+                }
+
+                this.UrlHandler(route.path, location.pathname, route.view);
+            }
         });
     }
 
@@ -99,25 +102,15 @@ class Router {
     
             if (link === null || link === location.pathname) return;
 
-            this.routes.find(route => { 
+            for (const route of this.routes) {
                 if (link === route.path){
                     this.NavigateTo(route.path, route.view);
 
-                    return true;
+                    break;
                 }
 
                 this.UrlHandler(route.path, link, route.view);
-            });
-
-            // for (const route of this.routes) {
-            //     if (link === route.path){
-            //         this.NavigateTo(route.path, route.view);
-
-            //         break;
-            //     }
-
-            //     this.UrlHandler(route.path, link, route.view);
-            // }
+            }
         });
     }
 }

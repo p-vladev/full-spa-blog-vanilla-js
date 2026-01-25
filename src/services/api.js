@@ -1,7 +1,6 @@
 class ApiServices {
-    constructor (url, endpoints) {
+    constructor (url) {
         this.url = url;
-        this.endpoints = endpoints;
     }
 
     async Request (endpoint, method = 'GET', body = null) {
@@ -29,22 +28,16 @@ class ApiServices {
         return await this.Request(endpoint);
     }
 
-    async GetDataWithEmbed (endpoint) {
-        let txt = `?`;
-
-        for (const endP of this.endpoints) {
-            if (!endpoint.match(endP)) {
-                txt += `_embed=${endP.substring(1, endP.length - 1)}&`;
-            }
-        }
-
-        console.log(endpoint + txt);
-
-        return await this.Request(endpoint + txt);
-    }
-
     async PostData(endpoint, body){
         return await this.Request(endpoint, 'POST', body);
+    }
+    
+    async PatchData (endpoint, body) {
+        return await this.Request(endpoint, 'PATCH', body);
+    }
+    
+    async DeleteData (endpoint) {
+        return await this.Request(endpoint, 'DELETE');
     }
 
     async GetDataSortedByDate (endpoint, order, limit) {
@@ -73,4 +66,4 @@ class ApiServices {
     }
 }
 
-export const api = new ApiServices("http://localhost:3000", ["/users", "/blogs"]);
+export const api = new ApiServices("http://localhost:3000");
