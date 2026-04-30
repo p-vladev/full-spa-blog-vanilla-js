@@ -1,6 +1,6 @@
 import { router } from "./router/Router.js";
 import HomeView from "./views/HomeView";
-import LogInView from "./views/LoginView.js"
+import LogInView from "./views/LogInView.js"
 import SignUpView from "./views/SignUpView.js";
 import ProfileView from "./views/ProfileView.js"
 import BlogView from "./views/BlogView";
