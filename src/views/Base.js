@@ -1,9 +1,11 @@
 import Navbar from "../components/base/Navbar";
 import Sidebar from "../components/base/Sidebar";
+import Footer from "../components/base/Footer";
 import sheetCSS from "../style.css?inline";
 
 const nav = new Navbar;
 const sidebar = new Sidebar;
+const footer = new Footer;
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(sheetCSS);
@@ -17,7 +19,7 @@ const ShowAndHideHandler = (sideNav, nav) => {
             side.classList.add("is-open");
             sideNav.classList.add("active")
             showBtn.classList.add("hidden");
-            nav.classList.add("is-clossed")
+            // nav.classList.add("is-clossed")
 
             return;
         } 
@@ -26,7 +28,7 @@ const ShowAndHideHandler = (sideNav, nav) => {
             side.classList.remove("is-open");
             sideNav.classList.remove("active")
             showBtn.classList.remove("hidden");
-            nav.classList.remove("is-clossed")
+            // nav.classList.remove("is-clossed")
         }
     });
 }
@@ -71,7 +73,8 @@ export default class Base extends HTMLElement {
             <div class="container">
                 <slot></slot>
             </div>
-            `
+            ${footer.render()}
+        `;
     }
 }
 

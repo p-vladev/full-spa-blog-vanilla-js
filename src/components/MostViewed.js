@@ -21,9 +21,7 @@ export default class extends AbstractComponent {
 
     init = async () => {
         try {
-            // blogsList = await api.GetDataSortedByDate("/blogs", "desc", 3);
-            blogsList = await api.GetData("/blogs?_embed=users&_sort=postedAt&_limit=3");
-            console.log("Recent uploads: ", blogsList);
+            blogsList = await api.GetData("/blogs?_embed=views&_sort=views=desc&_limit=3");
         } catch (error) {
             console.error("Error fetching blogs: ", error);
         } finally {
@@ -37,7 +35,7 @@ export default class extends AbstractComponent {
 
         return `
         <div class="recent-uploads">
-            <h2>Recent Uploads</h2>
+            <h2>Most Viewed</h2>
 
             <div class="uploads-list">
                 ${isLoading 

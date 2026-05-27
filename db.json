@@ -111,5 +111,129 @@
       "postedAt": "2024-03-18",
       "text": "Finding balance in life<font face=\"Comic Sans MS\"> mea<i><u><b>ns ma</b></u></i></font><font face=\"Arial Black\"><i><u><b>king<font color=\"#ff0000\"> time for work, </font>relationships, rest, and personal interests. Balance does not mean equal time for eve</b></u></i>rything, but intentional choices that support long-term happiness and he</font>alth."
     }
+  ],
+  "views": [
+    {
+      "id": "1",
+      "blogId": "1",
+      "userId": "14b8"
+    },
+    {
+      "id": "2",
+      "blogId": "2",
+      "userId": "14b8"
+    },
+    {
+      "id": "3",
+      "blogId": "3",
+      "userId": "14b8"
+    },
+    {
+      "id": "4",
+      "blogId": "4",
+      "userId": "14b8"
+    },
+    {
+      "id": "5",
+      "blogId": "5",
+      "userId": "14b8"
+    },
+    {
+      "id": "6",
+      "blogId": "6",
+      "userId": "14b8"
+    },
+    {
+      "id": "7",
+      "blogId": "7",
+      "userId": "14b8"
+    },
+    {
+      "id": "8",
+      "blogId": "8",
+      "userId": "14b8"
+    },
+    {
+      "id": "9",
+      "blogId": "9",
+      "userId": "14b8"
+    },
+    {
+      "id": "10",
+      "blogId": "10",
+      "userId": "14b8"
+    },
+    {
+      "id": "11",
+      "blogId": "11",
+      "userId": "14b8"
+    },
+    {
+      "id": "12",
+      "blogId": "11",
+      "userId": null
+    }
+  ],
+  "likes": [
+    {
+      "id": "1",
+      "blogId": "1",
+      "userId": "14b8"
+    },
+    {
+      "id": "2",
+      "blogId": "2",
+      "userId": "14b8"
+    },
+    {
+      "id": "3",
+      "blogId": "3",
+      "userId": "14b8"
+    },
+    {
+      "id": "4",
+      "blogId": "4",
+      "userId": "14b8"
+    },
+    {
+      "id": "5",
+      "blogId": "5",
+      "userId": "14b8"
+    },
+    {
+      "id": "6",
+      "blogId": "6",
+      "userId": "14b8"
+    },
+    {
+      "id": "7",
+      "blogId": "7",
+      "userId": "14b8"
+    },
+    {
+      "id": "8",
+      "blogId": "8",
+      "userId": "14b8"
+    },
+    {
+      "id": "9",
+      "blogId": "9",
+      "userId": "14b8"
+    },
+    {
+      "id": "10",
+      "blogId": "10",
+      "userId": "14b8"
+    },
+    {
+      "id": "11",
+      "blogId": "11",
+      "userId": "14b8"
+    },
+    {
+      "id": "12",
+      "blogId": "11",
+      "userId": "1"
+    }
   ]
 }
